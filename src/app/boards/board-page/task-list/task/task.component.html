@@ -1,0 +1,25 @@
+<app-card [bgColor]="bgColor" [title]="title" *ngIf="!isEditar; else editarForm">
+    <div class="task-buttons d-flex justify-content-between mb-2">
+        <mat-icon  matSuffix *ngIf="canEdit" (click)="editarTask()" role="button">edit</mat-icon>
+        <mat-icon matSuffix *ngIf="canRemove" (click)="removerTask()" role="button">close</mat-icon>
+    </div>
+    <markdown lineNumbers emoji ngPreserveWhitespaces *ngIf="details !== ''; else showNgContent">
+        {{ details }}
+    </markdown>
+    <ng-template #showNgContent>
+        <ng-content></ng-content>
+    </ng-template>
+</app-card>
+
+<ng-template #editarForm>
+    <app-task-form
+        [taskListId]="taskListId"
+        [boardId]="boardId"
+        [title]="title"
+        [bgColor]="bgColor"
+        [details]="details"
+        [taskId]="taskId"
+        (cancel)="closeForm($event)"
+        (change)="editedTask($event)">
+    </app-task-form>
+</ng-template>

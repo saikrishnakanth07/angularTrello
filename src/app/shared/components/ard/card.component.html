@@ -1,0 +1,7 @@
+<mat-card  class="card text-white  bg-{{ bgColor }} mb-3 card" [ngStyle]="{'max-width.em': maxWidth}">
+      <mat-card-header *ngIf="header"> {{ header }}</mat-card-header>
+      <mat-card-title *ngIf="title"> {{ title }}</mat-card-title>
+      <mat-card-content>
+        <p class="card-text"><ng-content></ng-content></p>
+      </mat-card-content>
+</mat-card>
